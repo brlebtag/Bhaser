@@ -13,12 +13,16 @@ export function seek(source: Phaser.Math.Vector2, target: Phaser.Math.Vector2, v
     return target.subtract(source).setLength(velocity);
 }
 
-export function follow(currentPosition: Phaser.Math.Vector2, futurePosition: Phaser.Math.Vector2, beginPath: Phaser.Math.Vector2, endPath: Phaser.Math.Vector2, distance: number, velocity: number): Phaser.Math.Vector2 {
-    let target = projection(beginPath, futurePosition, endPath);
-    let length = euclidian(futurePosition, target);
+export function follow(source: Phaser.Math.Vector2, future: Phaser.Math.Vector2, begin: Phaser.Math.Vector2, end: Phaser.Math.Vector2, distance: number, velocity: number): Phaser.Math.Vector2 {
+    if (future == source) {
+        future = source.clone();
+    }
+
+    let target = projection(end.subtract(begin), future.subtract(begin)).add(begin);
+    let length = euclidian(future, target);
 
     if (length > distance) {
-        return seek(currentPosition, target, velocity);
+        return seek(source, target, velocity);
     } else {
         return target.set(0, 0);
     }
