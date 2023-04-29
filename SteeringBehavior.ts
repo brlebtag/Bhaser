@@ -1,10 +1,10 @@
 import { map, euclidian } from "../Euclid/Algorithms/Math";
 import { project } from "./Vector2";
 
-export function arrive(force: Phaser.Math.Vector2, distance: number, velocity: number): Phaser.Math.Vector2 {
-    let length = force.length();
-
-    if (length < distance) return force.setLength(map(length, 0, distance, 0, velocity));
+export function arrive(force: Phaser.Math.Vector2, distance: number, threshold: number, velocity: number): Phaser.Math.Vector2 {
+    if (distance < threshold) {
+        return force.setLength(map(length, 0, distance, 0, velocity));
+    }
 
     return force.setLength(velocity);
 }
