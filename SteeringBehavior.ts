@@ -1,5 +1,5 @@
 import { map, euclidian } from "../Euclid/Algorithms/Math";
-import { projection } from "./Vector";
+import { project } from "./Vector2";
 
 export function arrive(force: Phaser.Math.Vector2, distance: number, velocity: number): Phaser.Math.Vector2 {
     let length = force.length();
@@ -18,7 +18,7 @@ export function follow(source: Phaser.Math.Vector2, future: Phaser.Math.Vector2,
         future = source.clone();
     }
 
-    let target = projection(end.subtract(begin), future.subtract(begin)).add(begin);
+    let target = project(end.subtract(begin), future.subtract(begin)).add(begin);
     let length = euclidian(future, target);
 
     if (length > distance) {

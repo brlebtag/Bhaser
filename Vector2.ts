@@ -1,9 +1,9 @@
 /**
- * @param projecting Vector2 must be equal to end minus begin
- * @param projected Vector must be equal to point minus begin
+ * @param yVector Vector2 must be equal to point minus begin
+ * @param xVector Vector2 must be equal to end minus begin
  */
-export function projection(projecting: Phaser.Math.Vector2, projected: Phaser.Math.Vector2): Phaser.Math.Vector2 {
-    projecting.normalize();
-    let sp: number = projected.dot(projecting);
-    return projecting.scale(sp);
+export function project(yVector: Phaser.Math.Vector2, xVector: Phaser.Math.Vector2): Phaser.Math.Vector2 {
+    xVector.normalize();
+    let sp: number = yVector.dot(xVector);
+    return xVector.scale(sp);
 }
